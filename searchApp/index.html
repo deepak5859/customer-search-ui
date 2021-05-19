@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Search Customer Data</title>
+      
+      <!-- AngularJs Javascript File -->
+      <script type="text/javascript" src="angular_v1.6.0.js"></script>
+      <script type="text/javascript" src="customer.js"></script> 
+       
+      <!-- Bootstrap Css -->
+      <link rel="stylesheet" href="https://www.webcodegeeks.com/wp-content/litespeed/localres/maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
+      <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
+
+      <style type="text/css">
+        li {
+            cursor: pointer;  
+        }
+         
+        li:hover {
+            background-color: #f9f9f9;  
+        }
+      </style>
+   </head>
+   <body>
+      <div id="angularAutocomplete" class="container">
+         <h1 align="center" class="text-primary">Search Customer Data</h1>
+         <hr />
+         <div ng-app="myApp" ng-controller="customerController">
+            <label for="customer" class="text-secondary">Enter Customer Name</label>       
+            <input type="text" name="customer" id="customer" ng-model="customer" ng-keyup="cname(customer)" placeholder="Search customer" class="form-control" />  
+            <ul class="list-group" ng-hide="hidethis">
+               <li class="list-group-item" ng-repeat="customer_info in filterCustomer track by $index" ng-click="fillInputBox(customer_info)">{{customer_info}}</li>
+            </ul>
+            <div> </div>
+            <p id="pText" class="text-info">You Selected <strong>{{ customer }}</strong></p>
+
+            <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+               <tr ng-repeat="row in customerList">
+                 <td data-title="'First Name'">{{row.firstname}}</td>
+                 <td data-title="'Last Name'">{{row.lastname}}</td>
+                 <td data-title="'Email'">{{row.email}}</td>
+                 <td data-title="'Job Title'">{{row.jobtitle}}</td>
+                 <td data-title="'Company'">{{row.company}}</td>
+               </tr>
+            </table>
+         </div>
+
+         
+
+      </div>
+      
+   </body>
+</html>
